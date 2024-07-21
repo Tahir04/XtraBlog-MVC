@@ -1,0 +1,51 @@
+﻿@model List<XtraBlog.UI.Models.Comment>
+
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Blog Comments</h1>
+</div>
+
+<!-- Categories Table -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Existing Comments</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Comment Description</th>
+                        <th>Profile Photo</th>
+                        <th>Created Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var com in Model)
+                    {
+                        <tr>
+                            <td>@com.Name</td>
+                            <td>@com.Description</td>
+                            <td>
+                                <img src="@com.PhotoURL" alt="Photo" class="img-fluid rounded-circle" style="max-width: 100px; max-height: 100px;" />
+                            </td>
+                            <td>@com.CreatedDate.ToString("dd MMMM yyyy")</td>
+                            <td>
+                                <form asp-action="Delete" asp-route-id="@com.Id" method="post" class="text-center">
+                                    <button type="submit" class="btn btn-sm btn-danger text-center">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

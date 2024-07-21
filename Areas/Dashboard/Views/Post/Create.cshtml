@@ -1,0 +1,34 @@
+﻿@model PostCreateDto
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Create/Edit Post</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input asp-for="Title" type="text" class="form-control" id="title" placeholder="Enter post title">
+                <span class="text-danger" asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group">
+                <label for="homeDescription">Home Description</label>
+                <textarea asp-for="HomeDescription" class="form-control" id="homeDescription" rows="2" placeholder="Enter home description"></textarea>
+                <span class="text-danger" asp-validation-for="HomeDescription"></span>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea asp-for="Description" class="form-control" id="description" rows="5" placeholder="Enter full description"></textarea>
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <label for="photoURL">Photo URL</label>
+                <input asp-for="PhotoURL" type="text" class="form-control" id="photoURL" placeholder="Enter photo URL">
+                <span class="text-danger" asp-validation-for="PhotoURL"></span>
+            </div>
+            <div class="form-group">
+                <label for="videoURL">Video URL</label>
+                <input asp-for="VideoURL" type="text" class="form-control" id="videoURL" placeholder="Enter video URL">
+                <span class="text-danger" asp-validation-for="VideoURL"></span>
+            </div>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+    </div>
+

@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+@model XtraBlog.UI.ViewModels.HomeViewModel
+
+<div class="row tm-row">
+    <div class="col-12">
+        <form method="GET" class="form-inline tm-mb-80 tm-search-form">
+            <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+            <button class="tm-search-button" type="submit">
+                <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="row tm-row">
+    @foreach (var post in Model.Posts)
+    {
+        <article class="col-12 col-md-6 tm-post">
+            <hr class="tm-hr-primary">
+            <a href="/Home/Detail/@post.Id" class="effect-lily tm-post-link tm-pt-60">
+                <div class="tm-post-link-inner">
+                    <div class="tm-post-img-container">
+                        <img src="@post.PhotoURL" alt="Resim" class="img-fluid tm-post-img" width="440" height="220">
+                    </div>
+                </div>
+                <span class="position-absolute tm-new-badge">New</span>
+                <h2 class="tm-pt-30 tm-color-primary tm-post-title">@post.Title</h2>
+            </a>
+            <p class="tm-pt-30">@post.HomeDescription</p>
+            <div class="d-flex justify-content-between tm-pt-45">
+                <span class="tm-color-primary">Travel . Events</span>
+                <span class="tm-color-primary">@post.CreatedDate.ToString("MMMM d, yyyy")</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <span>@post.ViewCount comments</span>
+                <span>by Admin @post.AdminId</span>
+            </div>
+        </article>
+    }
+</div>
+
+<div class="row tm-row tm-mt-100 tm-mb-75">
+    <div class="tm-prev-next-wrapper">
+        @if (Model.CurrentPage > 1)
+        {
+            <a href="@Url.Action("Index", new { page = Model.CurrentPage - 1 })" class="mb-2 tm-btn tm-btn-primary tm-prev-next tm-mr-20">Prev</a>
+        }
+        else
+        {
+            <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
+        }
+
+        @if (Model.CurrentPage < Model.TotalPages)
+        {
+            <a href="@Url.Action("Index", new { page = Model.CurrentPage + 1 })" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+        }
+        else
+        {
+            <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled">Next</a>
+        }
+    </div>
+    <div class="tm-paging-wrapper">
+        <span class="d-inline-block mr-3">Page</span>
+        <nav class="tm-paging-nav d-inline-block">
+            <ul>
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="tm-paging-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a href="@Url.Action("Index", new { page = i })" class="mb-2 tm-btn tm-paging-link">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<style>
+    .tm-post-img-container {
+        width: 440px;
+        height: 260px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .tm-post-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>

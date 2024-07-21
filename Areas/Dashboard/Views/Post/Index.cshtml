@@ -1,0 +1,76 @@
+﻿@model List<XtraBlog.UI.Models.Post>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Blog Posts</h1>
+    <a href="/Dashboard/Post/Create" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Create Post
+    </a>
+</div>
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-info">DataTable for Post List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Home Description</th>
+                            <th>Description</th>
+                            <th>Photo</th>
+                            <th>Video</th>
+                            <th>Created Date</th>
+                            <th>View Count</th>
+                            <th>Edit Action</th>
+                            <th>Delete Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Title</td>
+                                <td>@item.HomeDescription</td>
+                                <td>@(item.Description.Length > 20 ? item.Description.Substring(0, 20) + "..." : item.Description)</td>
+                                <td>
+                                    <div style="width: 100px; height: 100px; overflow: hidden;">
+                                        <img src="@item.PhotoURL" alt="Photo" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="@item.VideoURL" target="_blank" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-video"></i> View Video
+                                    </a>
+                                </td>
+                                <td>@item.CreatedDate.ToString("MMMM d, yyyy")</td>
+                                <td>@item.ViewCount</td>
+                                <td>
+                                    <a href="/Dashboard/Post/Edit/@item.Id" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </td>
+                                <td>
+                                    <form method="post" action="/Dashboard/Post/Delete/@item.Id" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

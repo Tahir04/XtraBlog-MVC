@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+@model XtraBlog.UI.ViewModels.AboutViewModel
+
+<div class="row tm-row">
+    <div class="col-12">
+        <form method="GET" class="form-inline tm-mb-80 tm-search-form">
+            <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+            <button class="tm-search-button" type="submit">
+                <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+@foreach (var about in Model.Abouts) {
+    <div class="row tm-row tm-mb-45">
+        <div class="col-12">
+            <hr class="tm-hr-primary tm-mb-55">
+            <img src="~/img/about-01.jpg" alt="Image" class="img-fluid">
+        </div>
+    </div>
+    <div class="row tm-row tm-mb-40">
+        <div class="col-12">
+            <div class="mb-4">
+                <h2 class="pt-2 tm-mb-40 tm-color-primary tm-post-title">@about.Title</h2>
+                <p>
+                    @about.Description
+                </p>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row tm-row tm-mb-120">
+    @foreach (var param in Model.Paramethers) {
+        <div class="col-lg-4 tm-about-col">
+            <div class="tm-bg-gray tm-about-pad">
+                <div class="text-center tm-mt-40 tm-mb-60">
+                    <i class="@param.Icon"></i>
+                </div>
+                <h2 class="mb-3 tm-color-primary tm-post-title">@param.Title</h2>
+                <p class="mb-0 tm-line-height-short">@param.Description</p>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row tm-row tm-mb-60">
+    <div class="col-12">
+        <hr class="tm-hr-primary tm-mb-55">
+    </div>
+    @foreach (var admin in Model.AboutAdmins)
+    {
+        <div class="col-lg-6 tm-mb-60 tm-person-col">
+            <div class="media tm-person">
+                <div class="image-container">
+                    <img src=@admin.PhotoURL alt="Image" class="img-fluid" onerror="this.onerror=null; this.src='./img/user.png';">>
+                </div>
+                <div class="media-body">
+                    <h2 class="tm-color-primary tm-post-title mb-2">@admin.Name</h2>
+                    <h3 class="tm-h3 mb-3">@admin.Position</h3>
+                    <p class="mb-0 tm-line-height-short">
+                        @admin.Description
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@*Admin Photo Desing*@
+<style>
+    .image-container {
+        width: 150px; 
+        height: 200px; 
+        position: relative;
+        overflow: hidden;
+        margin-right: 16px; 
+    }
+    .image-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+     }
+</style>
+
+

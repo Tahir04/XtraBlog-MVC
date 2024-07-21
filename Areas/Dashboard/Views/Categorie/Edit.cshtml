@@ -1,0 +1,16 @@
+﻿@model XtraBlog.UI.Dtos.CategorieDtos.CategorieEditDto
+
+<div class="container w-50 mt-5 mb-5 shadow p-4 rounded">
+    <h2 class="text-center mb-4">Edit Category Paramether</h2>
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+        <div class="form-group">
+            <label asp-for="Name" class="font-weight-bold">Category Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-warning mr-2">Save</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

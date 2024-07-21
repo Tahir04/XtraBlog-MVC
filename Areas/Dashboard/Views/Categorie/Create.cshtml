@@ -1,0 +1,26 @@
+﻿@model CategorieCreateDto
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-info">CREATE NEW CATEGORY</h6>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Categorie" asp-action="Create" method="post">
+                        <div class="form-group">
+                            <label asp-for="Name" class="font-weight-bold">Category Name</label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter category name">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-lg">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

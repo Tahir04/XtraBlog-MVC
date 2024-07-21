@@ -1,0 +1,29 @@
+﻿@model AdminCreateDto
+
+<div class="container mt-5">
+    <h2 class="mb-4">Form Design</h2>
+    <form asp-action="Create" asp-controller="Admin" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter name">
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea asp-for="Description" class="form-control" id="description" rows="3" placeholder="Enter description"></textarea>
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        <div class="form-group">
+            <label for="photoURL">Photo URL</label>
+            <input asp-for="PhotoURL" type="url" class="form-control" id="photoURL" placeholder="Enter admin photo">
+            <span class="text-danger" asp-validation-for="PhotoURL"></span>
+        </div>
+        <div class="form-group">
+            <label for="position">Position</label>
+            <input asp-for="Position" type="text" class="form-control" id="position" placeholder="Enter admin position">
+            <span class="text-danger" asp-validation-for="Position"></span>
+        </div>
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+</div>
